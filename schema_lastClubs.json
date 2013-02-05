@@ -1,32 +1,54 @@
 {
-	"type":"array",
+	"type":"object",
 	"$schema": "http://json-schema.org/draft-03/schema",
-	"name": "data",
-	"minitems": "0",
 	"id": "#",
-	"required":true,
+	"required":false,
 	"properties":{
-		"club": {
-			"type":"object",
-			"id": "club",
+		"data": {
+			"type":"array",
+			"id": "data",
 			"required":false,
-			"properties":{
-				"end": {
-					"type":"string",
-					"id": "end",
-					"required":false
-				},
-				"id": {
-					"type":"int",
-					"id": "id",
-					"required":false
-				},
-				"name": {
-					"type":"string",
-					"id": "name",
-					"required":false
+			"items":
+				{
+					"type":"object",
+					"title": "key",
+					"name": "id",
+					"id": "0",
+					"required":false,
+					"properties":{
+						"club": {
+							"type":"object",
+							"title": "Club",
+							"id": "club",
+							"required":false,
+							"properties":{
+								"club_id": {
+									"type":"string",
+									"id": "club_id",
+									"required":false
+								},
+								"end": {
+									"type":"string",
+									"title": "End Date",
+									"id": "end",
+									"required":false
+								},
+								"name": {
+									"type":"string",
+									"id": "name",
+									"required":false
+								}
+							}
+						},
+						"id": {
+							"type":"string",
+							"id": "id",
+							"required":false
+						}
+					}
 				}
-			}
+			
+
 		}
 	}
 }
