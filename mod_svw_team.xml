@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5.0" client="site" method="upgrade">
+    <!-- Name of the Module -->
+	<name>SVW Team Seite</name> 
+ 
+    <!-- Name of the Author -->
+	<author>Pascal Link</author> 
+ 
+    <!-- Version Date of the Module -->
+	<creationDate>2012-11-02</creationDate> 
+ 
+    <!-- Copyright information -->
+	<copyright>All rights reserved by Pascal Link (C) 2012.</copyright> 
+ 
+    <!-- License Information -->
+	<license>GPL 2.0</license> 
+ 
+    <!-- Author's email address -->
+	<authorEmail>pascal.link@pl07.de</authorEmail> 
+ 
+    <!-- Author's website -->
+	<authorUrl>http://www.pl07.de</authorUrl> 
+ 
+    <!-- Module version number -->
+	<version>2.0.0</version> 
+ 
+    <!-- Description of what the module does -->
+	<description>MOD_SVW_TEAM_DESC</description>
+ 
+    <!-- Listing of all files that should be installed for the module to function -->
+	<files>
+        <!-- The "module" attribute signifies that this is the main controller file -->
+		<filename module="mod_svw_team">mod_svw_team.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<filename>tmpl/default.php</filename>
+		<filename>tmpl/index.html</filename>
+		<filename>teamMember.php</filename>
+		<filename>js/teamSite.js</filename>
+	</files>	
+	<media folder="media" destination="mod_svw_team">
+		<folder>js</folder>
+	</media>
+	<languages>
+		<language tag="de-DE">de-DE.mod_svw_team.ini</language>
+		<language tag="de-DE">de-DE.mod_svw_team.sys.ini</language>
+		<language tag="en-GB">en-GB.mod_svw_team.ini</language>
+		<language tag="en-GB">en-GB.mod_svw_team.sys.ini</language>
+	</languages>
+
+ 
+    <!-- Optional parameters -->
+	<config>
+            <fields name="params">
+                
+    		           </fields>
+    </config>
+</extension>
