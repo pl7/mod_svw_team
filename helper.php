@@ -33,7 +33,7 @@ class ModSvwTeamHelper {
         
         $query = 'SELECT svw_team_members.name, svw_team_members.vorname, svw_team_members.bday, svw_team_members.last_clubs, svw_team_members.svw_since, games, scores, jersey_nr, team_part, title
                     FROM svw_team_members_season_data
-                    INNER JOIN svw_team_members ON svw_team_members_season_data.id = svw_team_members.id 
+                    INNER JOIN svw_team_members ON svw_team_members_season_data.member_id = svw_team_members.id 
                     WHERE svw_team_members_season_data.team_key LIKE "'.$teamKey.'" AND season_key LIKE "'.$seasonKey.'" ORDER BY team_part DESC, jersey_nr DESC, name DESC';
         
         $db->setQuery($query);
@@ -66,10 +66,8 @@ class ModSvwTeamHelper {
         $db = &JFactory::getDBO();
         
         
-        $query = 'SELECT svw_team_members.id, svw_team_members.name, svw_team_members.vorname, svw_team_members.bday, svw_team_members.last_clubs, svw_team_members.svw_since, games, scores, jersey_nr, team_part, title
-                    FROM svw_team_members_season_data
-                    INNER JOIN svw_team_members ON svw_team_members_season_data.id = svw_team_members.id 
-                    WHERE svw_team_members_season_data.team_key LIKE "'.$teamKey.'" AND season_key LIKE "'.$seasonKey.'" AND team_part LIKE "'.$position.'" ORDER BY team_part DESC, jersey_nr DESC, name DESC';
+        $query = 'SELECT svw_team_members.id, svw_team_members.name, svw_team_members.vorname, svw_team_members.bday, svw_team_members.last_clubs, svw_team_members.svw_since, games, scores, jersey_nr, team_part, title FROM svw_team_members_season_data
+                    INNER JOIN svw_team_members ON svw_team_members_season_data.member_id = svw_team_members.id WHERE svw_team_members_season_data.team_key LIKE "'.$teamKey.'" AND season_key LIKE "'.$seasonKey.'" AND team_part LIKE "'.$position.'" ORDER BY team_part DESC, jersey_nr DESC, name DESC';
         
         $db->setQuery($query);
         
@@ -88,7 +86,7 @@ class ModSvwTeamHelper {
                     adresses.tel_2_label, adresses.tel_2,
                     adresses.tel_3_label, adresses.tel_3
                     FROM svw_team_members members
-                    INNER JOIN svw_team_members_season_data data ON data.id = members.id
+                    INNER JOIN svw_team_members_season_data data ON data.member_id = members.id
                     INNER JOIN svw_members_adresses adresses ON adresses.id = members.id
                     WHERE data.team_key LIKE "'.$teamKey.'" AND data.season_key LIKE "'.$seasonKey.'" AND data.team_part LIKE "'.$teamPart.'" ORDER BY data.team_part DESC, data.jersey_nr DESC, members.name DESC';
         //if($teamPart == 0) echo $query;
