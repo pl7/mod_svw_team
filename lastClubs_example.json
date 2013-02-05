@@ -3,10 +3,40 @@
 			{
 			"id":"0",
 			"club": {
-					"end":"2012-12-31",
+					"end":"2012-06-30",
 					"club_id":"0",
-					"name":"Türkischer SV Wiesbaden"
+					"name":"SV Erbenheim Jugend"
 				}
 			}
 		]
 }
+
+{
+	"data":[
+			{
+			"id":"0",
+			"club": {
+					"end":"2007-06-30",
+					"club_id":"0",
+					"name":"SG Blau-Weiß Beelitz"
+				}
+			},
+			{
+			"id":"1",
+			"club": {
+					"end":"2008-06-30",
+					"club_id":"0",
+					"name":"ESV Lok Seddin"
+				}
+			},
+			{
+			"id":"2",
+			"club": {
+					"end":"2011-06-30",
+					"club_id":"0",
+					"name":"SpVgg Fortuna Edingen"
+				}
+			}
+		]
+}
+{2000:SG Blau-Weiß Beelitz;2007:ESV Lok Sedding;2009:SpVgg Fortuna Edingen;2011}
