@@ -4,19 +4,18 @@
     $canEdit = JFactory::getUser()->authorise('core.edit', 'com_languages');
     
     $tpath = '/templates/'.$app->getTemplate();
+
+	$showCount = 0;
+	if($showTrainEvents) $showCount++;
+	if($showEvents) $showCount++;
+	if($showCups) $showCount++;
+	if($showTurnaments) $showCount++;
+	if($showFriendlies) $showCount++;
+	if($showLeagueGames) $showCount++;
+    
 ?>
-<section id="teamSite">
-    <?php if($showTrainEvents or $showEvents or $showCups or $showTurnaments or $showFriendlies) : ?>
-    
-    <?php
-        $showCount = 0;
-        if($showTrainEvents) $showCount++;
-        if($showEvents) $showCount++;
-        if($showCups) $showCount++;
-        if($showTurnaments) $showCount++;
-        if($showFriendlies) $showCount++;
-    ?>
-    
+<section id="teamSite" showCount="<?php echo $showCount ?>">
+    <?php if($showCount > 0) : ?>
     
     <?php if($showCount >= 2) : ?>
     <? /* ***************
@@ -25,20 +24,25 @@
     <section class="contentMenu" id="newsSelection">
         <nav class="top noPrint">
         	<ul id="menu" class="menu">
-                <?php if($showTrainEvents == 1) : ?><li class="current active"><a href="#trainDates"><?php echo JText::_('MOD_SVW_TRAIN_H3'); ?></a></li><?php endif;?>
-                <?php if($showEvents == 1) : ?><li class=""><a href="#events" ><?php echo JText::_('MOD_SVW_EVENTS_H3'); ?></a></li><?php endif;?>
-                <?php if($showFriendlies == 1) : ?><li class=""><a href="#friendlies" ><?php echo JText::_('MOD_SVW_FRIENDLIES_H3'); ?></a></li><?php endif;?>
-                <?php if($showCups == 1) : ?><li class=""><a href="#cups" ><?php echo JText::_('MOD_SVW_CUPS_H3'); ?></a></li><?php endif;?>
-                <?php if($showTurnaments == 1) : ?><li class=""><a href="#turnaments" ><?php echo JText::_('MOD_SVW_TURNAMENTS_H3'); ?></a></li><?php endif;?>
+                <?php if($showTrainEvents == 1 && sizeof($teamTrainData) > 0) : ?><li class="current active"><a href="#trainDates"><?php echo JText::_('MOD_SVW_TRAIN_H3'); ?></a></li><?php endif;?>
+                <?php if($showEvents == 1 && sizeof($teamEventsData) > 0) : ?><li class=""><a href="#events" ><?php echo JText::_('MOD_SVW_EVENTS_H3'); ?></a></li><?php endif;?>
+                <?php if($showFriendlies == 1 && sizeof($teamFriendliesData) > 0) : ?><li class=""><a href="#friendlies" ><?php echo JText::_('MOD_SVW_FRIENDLIES_H3'); ?></a></li><?php endif;?>
+                <?php if($showCups == 1 && sizeof($teamCupsData) > 0) : ?><li class=""><a href="#cups" ><?php echo JText::_('MOD_SVW_CUPS_H3'); ?></a></li><?php endif;?>
+                <?php if($showTurnaments == 1 && sizeof($teamTurnamentsData) > 0) : ?><li class=""><a href="#turnaments" ><?php echo JText::_('MOD_SVW_TURNAMENTS_H3'); ?></a></li><?php endif;?>
             </ul>					
         </nav>
     </section>
     <?php endif; ?>
 
-    
     <section class="page-item ac" id="teamInfos">
         <header>
-            <h3><?php echo JText::_('MOD_SVW_DISPLAY_TEAM_INFOS_LABEL'); ?></h3>
+            <h3><?php 
+				if($appParams->get('event_title') && strlen($appParams->get('event_title')) > 1)
+					echo $appParams->get('event_title'); 
+				else
+					echo JText::_('MOD_SVW_DISPLAY_TEAM_INFOS_LABEL'); 
+				?>
+			</h3>
         </header>
          
         <? /* ***************
@@ -46,13 +50,12 @@
             *****************  */ ?>
         <?php if($showTrainEvents && sizeof($teamTrainData) > 0) : ?>
         <article class="eventTimeTable ac">
-            <header><h4><img src="<?php echo $tpath; ?>/images/ball_football_clock" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_TRAIN_H3'); ?></h4></header>
+            <header><h4><img src="<?php echo $tpath; ?>/images/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_TRAIN_H3'); ?></h4></header>
             <table id="trainDates">
                 <?php foreach ($teamTrainData as $event){ 
                     $trainDate = new JDate($event->date_start);
                     $begin = new JDate($event->time_begin);
-                    $end = new JDate($event->time_end);
-                    
+                    $end = new JDate($event->time_end);                    
                 ?>
                     <tr>
                         <td class="weekDay"><?php echo $trainDate->format('l'); ?></td>
@@ -70,6 +73,7 @@
         <article class="eventTimeTable ac"  id="events">
             <header>
                 <h4><img src="<?php echo $tpath; ?>/images/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_EVENTS_H3'); ?> (<?php echo sizeof($teamEventsData);?>)</h4>
+				<time style="display:none" datetime="<?php echo $eventDate;?>"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_LC1')); ?></time>
             </header>
             <table>
                 <?php foreach ($teamEventsData as $event){ 
@@ -80,15 +84,18 @@
     
                 ?>
                     <tr class="dateTr">
-                        <td class="eventText"><?php echo $event->text ?></td>
-    					<td class="eventDate" colspan="2"><time datetime="<?php echo $eventDate;?>"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_LC1')); ?></time></td>
+						<?php displaySVWEventDateBox($eventDate, 3); ?>
+                        <td class="eventText">
+							<h5 itemprop="name"><?php echo $event->text ?></h5>
+							<span style="display:none" itemprop="description">SV Wiesbaden - <?php echo $teamInfo[0]->long_key ?>, Saison <?php echo $seasonKey ?></span>
+						</td>
+						<?php displayTimeLabelsTds($event); ?>
                     </tr>
                     <tr class="eventTr">
-                        <td class="eventPlace"><?php if(strlen($event->home)>0) echo "<p>Gastgeber: ".$event->home."</p>"; echo "<p>Veranstaltungsort: ".$event->meeting_place."</p>" ?></td>
-                        <td class="startEndTime">
-                            <?php if($event->time_begin != "00:00:00" || $event->time_end != "00:00:00") : ?>
-                            <?php echo '<time datetime="'.$begin.'">'.$begin->format('H:i').'</time>'; ?><?php if($event->time_end != "00:00:00") echo " - ".$end->format('H:i'); ?> Uhr<?php endif; ?></td>
-                        <td class="meetingTime"><?php if($event->time_meeting != "00:00:00") : ?> Treffpunkt: <?php echo $meeting->format('H:i'); ?> Uhr <?php endif; ?></td>
+						<td class="eventDesc">
+							<?php displaySVWEventDescription($event); ?>
+					    </td>
+                        <?php displayTimeValueTds($event, $begin, $end, $meeting); ?>                        
                     </tr>
                 <?php } ?>
             </table>
@@ -112,17 +119,66 @@
             ?>
             <table id="friendlie<?php echo $eventDateTime;?>" itemscope itemtype="http://schema.org/Event" typeof="SportsEvent">
                 <tr class="dateTr">
-                    <td rowspan="3">
-                        <div class="svwDate month"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_MONTH')); ?></div>
-                        <div class="svwDate date"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_DATE')); ?></div>
-                        <div class="svwDate day"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_DAY')); ?></div>
-                    </td>
+                    <?php displaySVWEventDateBox($eventDate, 3); ?>
                     <td class="eventText">
                         <h5 itemprop="name"><?php echo $event->text ?></h5>
                         <span style="display:none" itemprop="description">SV Wiesbaden - <?php echo $teamInfo[0]->long_key ?>, Saison <?php echo $seasonKey ?></span>
                     </td>
-                    <?php if($event->time_begin != "00:00:00") { echo '<th class="beginLabel">'; echo JText::_('TPL_SVW_TEAM_FRIENDLY_BEGIN_LABEL'); echo'</th>'; }?>
-                    <?php if($event->time_meeting != "00:00:00") { echo '<th class="meetingLabel">'; echo JText::_('TPL_SVW_TEAM_FRIENDLY_MEETING_LABEL'); echo'</th>';} ?>
+					<?php displayGameTimeLabelsTds($event); ?>
+                </tr>
+                <tr class="eventTr">
+                    <td class="eventGame">
+
+                        <?php if(strlen($event->home)>0 && strlen($event->guest)>0) : ?>
+                        <div itemscope itemtype="http://schema.org/Organization" itemprop="attendee">
+                        <span itemprop="name">
+                        <?php echo $event->home.' - '.$event->guest; ?>
+                        </span>
+                        </p>
+						</div>	
+                        <?php endif; ?>                        
+                    </td>
+                    <?php displayTimeValueTds($event, $begin, $end, $meeting); ?>    
+                </tr>
+                <tr class="eventLocation">
+                    <td colspan="4">
+                        <?php if($event->meeting_place != 0) : ?>
+                         <div itemprop="location" itemscope itemtype="http://schema.org/Place">
+                            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                <p><img class="location" src="<?php echo $tpath; ?>/images/location_2.png" alt="Fussballpokal">Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+					</td>
+                </tr>
+            </table>
+            <?php } ?>
+        </article>
+        <?php endif; ?>
+		<? /* ******************
+            //!LIGASPIELE 
+            ********************  */ ?>
+        <?php if($showLeagueGames && sizeof($teamLeagueGamesData) > 0) : ?>
+        <article class="eventTimeTable ac" id="friendlies">
+            <header>
+                <h4><img src="<?php echo $tpath; ?>/images/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_LEAGUE_H3'); ?> (<?php echo sizeof($teamLeagueGamesData);?>)</h4>
+            </header>
+            <?php foreach ($teamLeagueGamesData as $event){ 
+                $eventDateTime = new JDate($event->date_start.$event->time_begin);
+                $eventDate = new JDate($event->date_start);
+                $begin = new JDate($event->time_begin);
+                $end = new JDate($event->time_end);
+                $meeting = new JDate($event->time_meeting);
+
+            ?>
+            <table id="friendlie<?php echo $eventDateTime;?>" itemscope itemtype="http://schema.org/Event" typeof="SportsEvent">
+                <tr class="dateTr">
+                    <?php displaySVWEventDateBox($eventDate, 3); ?>
+                    <td class="eventText">
+                        <h5 itemprop="name"><?php echo $event->text ?></h5>
+                        <span style="display:none" itemprop="description">SV Wiesbaden - <?php echo $teamInfo[0]->long_key ?>, Saison <?php echo $seasonKey ?></span>
+                    </td>
+					<?php displayGameTimeLabelsTds($event); ?>
                 </tr>
                 <tr class="eventTr">
                     <td class="eventPlace">
@@ -134,24 +190,17 @@
                         </span>
                         </p>
 						</div>	
-                        <?php endif; ?>                        
-                   </td>
-                    <?php if($begin != "00:00:00" || $end != "00:00:00") {
-                       echo'<td class="startEndTime">';
-                       if($event->time_begin != "00:00:00") { echo $begin->format('H:i');  }
-                       if($event->time_end != "00:00:00") { echo " - ".$end->format('H:i'); }
-                       echo ' Uhr</td>';
-                    }    
-                    if($event->time_meeting != "00:00:00")  { 
-                        echo '<td class="meetingTime">'; echo $meeting->format('H:i'); echo' Uhr</td>';
-                    } ?>
+                        <?php endif; ?>    
+						<?php displaySVWEventLocation($event); ?>                    
+                    </td>
+				    <?php displayTimeValueTds($event, $begin, $end, $meeting); ?>    
                 </tr>
                 <tr class="eventGame">
                     <td colspan="4">
                         <?php if($event->meeting_place != 0) : ?>
                          <div itemprop="location" itemscope itemtype="http://schema.org/Place">
                             <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                <p><img class="location" src="<?php echo $tpath; ?>/images/location_2.png" alt="Fussballpokal"><Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
+                                <p><img class="location" src="<?php echo $tpath; ?>/images/location_2.png" alt="Fussballpokal">Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -179,17 +228,12 @@
             ?>
             <table id="friendlie<?php echo $eventDateTime;?>" itemscope itemtype="http://schema.org/Event" typeof="SportsEvent">
                 <tr class="dateTr">
-                    <td rowspan="3">
-                        <div class="svwDate month"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_MONTH')); ?></div>
-                        <div class="svwDate date"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_DATE')); ?></div>
-                        <div class="svwDate day"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_DAY')); ?></div>
-                    </td>
+                    <?php displaySVWEventDateBox($eventDate, 3); ?>
                     <td class="eventText">
                         <h5 itemprop="name"><?php echo $event->text ?></h5>
                         <span style="display:none" itemprop="description">SV Wiesbaden - <?php echo $teamInfo[0]->long_key ?>, Saison <?php echo $seasonKey ?></span>
                     </td>
-                    <?php if($event->time_begin != "00:00:00") { echo '<th class="beginLabel">'; echo JText::_('TPL_SVW_TEAM_FRIENDLY_BEGIN_LABEL'); echo'</th>'; }?>
-                    <?php if($event->time_meeting != "00:00:00") { echo '<th class="meetingLabel">'; echo JText::_('TPL_SVW_TEAM_FRIENDLY_MEETING_LABEL'); echo'</th>';} ?>
+					<?php displayGameTimeLabelsTds($event); ?>
                 </tr>
                 <tr class="eventTr">
                     <td class="eventPlace">
@@ -203,22 +247,14 @@
 						</div>	
                         <?php endif; ?>                        
                    </td>
-                    <?php if($begin != "00:00:00" || $end != "00:00:00") {
-                       echo'<td class="startEndTime">';
-                       if($event->time_begin != "00:00:00") { echo $begin->format('H:i');  }
-                       if($event->time_end != "00:00:00") { echo " - ".$end->format('H:i'); }
-                       echo ' Uhr</td>';
-                    }    
-                    if($event->time_meeting != "00:00:00")  { 
-                        echo '<td class="meetingTime">'; echo $meeting->format('H:i'); echo' Uhr</td>';
-                    } ?>
+				    <?php displayTimeValueTds($event, $begin, $end, $meeting); ?>    
                 </tr>
                 <tr class="eventGame">
                     <td colspan="4">
                         <?php if($event->meeting_place != 0) : ?>
                          <div itemprop="location" itemscope itemtype="http://schema.org/Place">
                             <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                <p><img class="location" src="<?php echo $tpath; ?>/images/location_2.png" alt="Fussballpokal"><Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
+                                <p><img class="location" src="<?php echo $tpath; ?>/images/location_2.png" alt="Fussballpokal">Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -246,15 +282,12 @@
             ?>
             <table id="turnament<?php echo $eventDateTime;?>" itemscope itemtype="http://schema.org/Event" typeof="SportsEvent">
                 <tr class="dateTr">
-                    <td rowspan="2">
-                        <div class="svwDate month"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_MONTH')); ?></div>
-                        <div class="svwDate date"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_DATE')); ?></div>
-                        <div class="svwDate day"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_DAY')); ?></div>
-                    </td>
+                    <?php displaySVWEventDateBox($eventDate, 3); ?>
                     <td class="eventText">
                         <h5 itemprop="name"><?php echo $event->text ?></h5>
                         <span style="display:none" itemprop="description">SV Wiesbaden - <?php echo $teamInfo[0]->long_key ?>, Saison <?php echo $seasonKey ?></span>
                     </td>
+					<?php displayTimeLabelsTds($event); ?>
                 </tr>
                 <tr class="eventTr">
                     <td class="eventPlace">
@@ -297,8 +330,7 @@
 						</div>	
                         <?php endif; ?>                        
                     </td>
-                    <td class="startEndTime"><?php if($event->time_begin != "00:00:00" || $event->time_end != "00:00:00") : ?><?php echo $begin->format('H:i'); ?><?php if($event->time_end != "00:00:00") echo " - ".$end->format('H:i'); ?> Uhr<?php endif; ?></td>
-                    <td class="meetingTime"><?php if($event->time_meeting != "00:00:00") : ?> Treffpunkt: <?php echo $meeting->format('H:i'); ?> Uhr <?php endif; ?></td>
+				    <?php displayTimeValueTds($event, $begin, $end, $meeting); ?>    
                 </tr>
             </table>
             <?php } ?>
@@ -362,12 +394,12 @@
             <h2><?php echo JText::_('MOD_SVW_TEAM_KEEPER_TITLE'); ?></h2>
         </header>
 
-		<section class="teamPosition contentItem" id="team_COACHES">
+		<section class="teamPosition contentItem" id="team_KEEPER">
 			<article class="ac">
 				<header>
 					<h3><?php echo JText::_('MOD_SVW_TEAM_KEEPER_TITLE'); ?></h3>
 				</header>
-				<?php foreach ($memberCoachesItems as $member){ ?>
+				<?php foreach ($memberKeeperItems as $member){ ?>
 				<?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_COACH_TITLE')); ?>
 				<?php } ?>
 			</article>

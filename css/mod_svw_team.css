@@ -1,0 +1,121 @@
+
+/*! SVW TEAM MODULE
+*********************************************/
+#teamSite .back-to-top {
+    clear: both;    
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
+#teamSite .back-to-top li, #teamSite .back-to-top > ul {
+    background-color: #e3e3e3;
+    border: none;
+}
+#teamSite .back-to-top a {
+    color: #00004b;
+    font-weight: bold;
+}
+#teamSite .back-to-top a:hover {
+    background-color: #f3f3f3;
+    color: #00008f;
+}
+div.team-image-preview  {
+    text-align:center;
+    width: 100%;
+    cursor: pointer;
+}
+div.team-image-preview img.fullsize {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    padding: 100px;
+    background: rgba(0,40,100, 0.8);
+}
+
+
+nav.teamMenu,
+nav.teamMenu li {
+    background-color: rgb(255,74,0);   
+    border: none;
+}
+
+nav.teamMenu > ul > li {
+	margin-left: 0.2em;
+}
+nav.teamMenu ul li a:hover,
+nav.teamMenu ul.menu ul a:hover,
+nav.teamMenu ul li a {
+    color: white;
+}
+nav.teamMenu li:hover > a,
+nav.teamMenu ul.menu ul a:hover {
+    background-color: #930;	
+}
+nav.teamMenu > ul ul {
+    left: 0;
+    border-top: white 1px solid;
+}
+
+nav.teamMenu > ul ul li:first-child > a::after {
+    top: -7px;
+}
+
+nav.teamMenu > ul ul a {
+	border-bottom: white 1px solid;
+}
+
+.eventText {
+    width: 70%;
+}
+.eventText * {
+    margin: 0;
+}
+
+
+#teamInfos .beginLabel,
+#teamInfos .meetingLabel {
+    width: 15%;
+}
+.location {
+    height: 1em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+.svwDateTd {
+	padding: 5px;
+}
+.svwDate  {    
+    margin: 0;
+    text-align: center;
+    width: 100px;
+    font-weight: bold;
+
+}
+
+.month {
+    border: 1px solid grey;
+    border-bottom: none;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+    background-color: rgb(255,74,0);
+    color: white;
+    padding: 2px 10px;
+}
+.date {
+    
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;    
+    font-size: 2em;
+    padding: 5px 10px;
+    
+}
+.day {
+    border: 1px solid grey;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #858585;
+    padding: 2px 10px;
+}

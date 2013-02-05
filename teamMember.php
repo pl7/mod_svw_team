@@ -1,4 +1,53 @@
 <?php 
+function displaySVWEventDateBox($eventDate, $rowSpan) { ?>
+
+	<td class="svwDateTd" rowspan="<?php echo $rowSpan; ?>">
+		<div class="svwDate month"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_MONTH')); ?></div>
+		<div class="svwDate date"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_DATE')); ?></div>
+		<div class="svwDate day"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_SVW_DAY')); ?></div>
+	</td>
+<?php }
+
+function displayTimeLabelsTds($event){
+	if($event->time_begin != "00:00:00") { echo '<th class="beginLabel">'; echo JText::_('MOD_SVW_EVENT_BEGIN_LABEL'); echo'</th>'; }
+	if($event->time_meeting != "00:00:00") { echo '<th class="meetingLabel">'; echo JText::_('MOD_SVW_EVENT_MEETING_LABEL'); echo'</th>';}
+}
+function displayGameTimeLabelsTds($event){
+	if($event->time_begin != "00:00:00") { echo '<th class="beginLabel">'; echo JText::_('MOD_SVW_GAME_BEGIN_LABEL'); echo'</th>'; }
+	if($event->time_meeting != "00:00:00") { echo '<th class="meetingLabel">'; echo JText::_('MOD_SVW_EVENT_MEETING_LABEL'); echo'</th>';}
+}
+
+function displayTimeValueTds($event, $begin, $end, $meeting){ ?>
+	<td class="startEndTime">
+		<?php if($event->time_begin != "00:00:00" || $event->time_end != "00:00:00") : ?>
+		<?php echo '<time datetime="'.$begin.'">'.$begin->format('H:i').'</time>'; ?><?php if($event->time_end != "00:00:00") echo " - ".$end->format('H:i'); ?> Uhr<?php endif; ?>
+	</td>
+	<td class="meetingTime"><?php if($event->time_meeting != "00:00:00") : ?><?php echo $meeting->format('H:i'); ?> Uhr <?php endif; ?></td>
+<?php }
+
+function displaySVWEventDescription($event) { 
+
+	if(strlen($event->home)>2 && strlen($event->guest)>2) : ?>
+	<div itemscope itemtype="http://schema.org/Organization" itemprop="attendee">
+		<h6><span itemprop="name"><?php echo $event->home;?></span></h6>
+		<p><?php echo $event->guest; ?></p>
+	</div>	
+	<?php endif; 
+}
+
+function displaySVWEventLocation($event) { ?>
+	<?php if(strlen($event->meeting_place) > 2) : ?>
+	<div class="location" itemprop="location" itemscope itemtype="http://schema.org/Place">
+		<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+			<p>
+				<img class="location" src="<?php echo JURI::base(); ?>media/mod_svw_team/images/location.png" alt="Location Symbol">
+				<span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span>
+			</p>
+		</div>
+	</div>
+	<?php endif;
+}
+
 function displaySVWMember($member, $imgPath, $seasonKey, $teamKey) { ?>
 
     <tr onmouseout="this.className='odd'" onmouseover="this.className='datasite_actRow'" class="odd" height="39">

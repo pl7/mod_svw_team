@@ -14,6 +14,7 @@ require_once (dirname(__FILE__).DS.'teamMember.php');
 jimport('joomla.application.component.helper'); 
 $doc =& JFactory::getDocument();   
 $doc->addScript("/media/mod_svw_team/js/teamSite.js");
+$doc->addStylesheet("/media/mod_svw_team/css/mod_svw_team.css");
 
 $app = JFactory::getApplication(); 
 $appParams  = $app->getParams();
@@ -40,6 +41,7 @@ $showEvents = $appParams->get('show_events');
 $showFriendlies = $appParams->get('show_friendlies');
 $showTurnaments = $appParams->get('show_turnaments');
 $showCups = $appParams->get('show_cups');
+$showLeagueGames = $appParams->get('show_league_games');
 
 
 
@@ -47,7 +49,7 @@ $showCups = $appParams->get('show_cups');
 $memberItems = ModSvwTeamHelper::getTeamMembersFromDb($teamKey, $seasonKey);
 $teamInfo = ModSvwTeamHelper::getTeamInfoFromDb($teamKey);
 
-if($showCoaches = 1){
+if($showCoaches == 1){
 	$memberCoachesItems = ModSvwTeamHelper::getTeamMembersWithAdressesByPositionAndSeason($teamKey, $seasonKey, 0);
 }
 if($showKeepers == 1){
@@ -61,6 +63,9 @@ if($showMembers == 1){
 }
 if($showTrainEvents == 1){
 	$teamTrainData = ModSvwTeamHelper::getTeamEventsBySeasonAndType($teamKey, $seasonKey, 0, 0);
+}
+if($showLeagueGames == 1){
+	$teamLeagueGamesData = ModSvwTeamHelper::getTeamEventsBySeasonAndType($teamKey, $seasonKey, 1, 0);
 }
 if($showCups == 1){
 	$teamCupsData = ModSvwTeamHelper::getTeamEventsBySeasonAndType($teamKey, $seasonKey, 2, 0);

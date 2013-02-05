@@ -7,7 +7,7 @@
 	<author>Pascal Link</author> 
  
     <!-- Version Date of the Module -->
-	<creationDate>2012-11-02</creationDate> 
+	<creationDate>2013-02-04</creationDate> 
  
     <!-- Copyright information -->
 	<copyright>All rights reserved by Pascal Link (C) 2012.</copyright> 
@@ -22,7 +22,7 @@
 	<authorUrl>http://www.pl07.de</authorUrl> 
  
     <!-- Module version number -->
-	<version>2.0.0</version> 
+	<version>2.0.1</version> 
  
     <!-- Description of what the module does -->
 	<description>MOD_SVW_TEAM_DESC</description>
@@ -37,9 +37,17 @@
 		<filename>tmpl/index.html</filename>
 		<filename>teamMember.php</filename>
 		<filename>js/teamSite.js</filename>
+		<filename>js/index.html</filename>
+		<filename>css/mod_svw_team.css</filename>
+		<filename>css/index.html</filename>
+		<filename>images/ball_football_clock.png</filename>
+		<filename>images/location.png</filename>
+		<filename>images/index.html</filename>
 	</files>	
 	<media folder="media" destination="mod_svw_team">
 		<folder>js</folder>
+		<folder>css</folder>
+		<folder>images</folder>
 	</media>
 	<languages>
 		<language tag="de-DE">de-DE.mod_svw_team.ini</language>
