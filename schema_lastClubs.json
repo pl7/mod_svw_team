@@ -1,0 +1,32 @@
+{
+	"type":"array",
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"name": "data",
+	"minitems": "0",
+	"id": "#",
+	"required":true,
+	"properties":{
+		"club": {
+			"type":"object",
+			"id": "club",
+			"required":false,
+			"properties":{
+				"end": {
+					"type":"string",
+					"id": "end",
+					"required":false
+				},
+				"id": {
+					"type":"int",
+					"id": "id",
+					"required":false
+				},
+				"name": {
+					"type":"string",
+					"id": "name",
+					"required":false
+				}
+			}
+		}
+	}
+}
