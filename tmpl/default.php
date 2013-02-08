@@ -24,7 +24,7 @@
     <section class="contentMenu" id="newsSelection">
         <nav class="top noPrint">
         	<ul id="menu" class="menu">
-                <?php if($showTrainEvents == 1 && sizeof($teamTrainData) > 0) : ?><li class=""><a href="#trainDates"><?php echo JText::_('MOD_SVW_TRAIN_H3'); ?></a></li><?php endif;?>
+                <?php if($showTrainEvents == 1 && sizeof($teamTrainData) > 0) : ?><li class="current active"><a href="#trainDates"><?php echo JText::_('MOD_SVW_TRAIN_H3'); ?></a></li><?php endif;?>
                 <?php if($showEvents == 1 && sizeof($teamEventsData) > 0) : ?><li class=""><a href="#events" ><?php echo JText::_('MOD_SVW_EVENTS_H3'); ?></a></li><?php endif;?>
                 <?php if($showFriendlies == 1 && sizeof($teamFriendliesData) > 0) : ?><li class=""><a href="#friendlies" ><?php echo JText::_('MOD_SVW_FRIENDLIES_H3'); ?></a></li><?php endif;?>
                 <?php if($showCups == 1 && sizeof($teamCupsData) > 0) : ?><li class=""><a href="#cups" ><?php echo JText::_('MOD_SVW_CUPS_H3'); ?></a></li><?php endif;?>
@@ -351,7 +351,7 @@
     <section class="contentMenu" id="newsSelection">
         <nav class="top noPrint">
         	<ul id="menu" class="menu">
-                <?php if($showCoaches == 1 && sizeof($memberCoachesItems) > 0) : ?><li class=""><a href="#team_COACHES"><?php echo JText::_('MOD_SVW_TEAM_COACH_TITLE'); ?></a></li><?php endif;?>
+                <?php if($showCoaches == 1 && sizeof($memberCoachesItems) > 0) : ?><li class="current active"><a href="#team_COACHES"><?php echo JText::_('MOD_SVW_TEAM_COACH_TITLE'); ?></a></li><?php endif;?>
                 <?php if($showKeepers == 1 && sizeof($memberKeeperItems) > 0) : ?><li class=""><a href="#team_KEEPER" ><?php echo JText::_('MOD_SVW_TEAM_KEEPER_TITLE'); ?></a></li><?php endif;?>
                 <?php if($showMembers == 1 && sizeof($memberGKItems) > 0) : ?><li class=""><a href="#team_KEEPER" ><?php echo JText::_('MOD_SVW_TEAM_GK_TITLE'); ?></a></li><?php endif;?>
                 <?php if($showMembers == 1) : ?>
