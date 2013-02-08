@@ -32,6 +32,11 @@ div.team-image-preview img.fullsize {
     padding: 100px;
     background: rgba(0,40,100, 0.8);
 }
+nav.teamMenu li {
+    border: none;
+
+nav.teamMenu ul.menu ul a:hover,
+}
 }
 .eventText {
     width: 70%;
