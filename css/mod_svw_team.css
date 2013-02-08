@@ -1,4 +1,3 @@
-
 /*! SVW TEAM MODULE
 *********************************************/
 #teamSite .back-to-top {
@@ -21,8 +20,10 @@
 }
 div.team-image-preview  {
     text-align:center;
-    width: 100%;
-    cursor: pointer;
+    width: 100%;    
+}
+div.team-image-preview img {
+	cursor: pointer;
 }
 div.team-image-preview img.fullsize {
     position: fixed;
@@ -33,39 +34,9 @@ div.team-image-preview img.fullsize {
     padding: 100px;
     background: rgba(0,40,100, 0.8);
 }
-
-
-nav.teamMenu,
-nav.teamMenu li {
-    background-color: rgb(255,74,0);   
-    border: none;
+p.team-pic-caption { 
+	text-align:center;
 }
-
-nav.teamMenu > ul > li {
-	margin-left: 0.2em;
-}
-nav.teamMenu ul li a:hover,
-nav.teamMenu ul.menu ul a:hover,
-nav.teamMenu ul li a {
-    color: white;
-}
-nav.teamMenu li:hover > a,
-nav.teamMenu ul.menu ul a:hover {
-    background-color: #930;	
-}
-nav.teamMenu > ul ul {
-    left: 0;
-    border-top: white 1px solid;
-}
-
-nav.teamMenu > ul ul li:first-child > a::after {
-    top: -7px;
-}
-
-nav.teamMenu > ul ul a {
-	border-bottom: white 1px solid;
-}
-
 .eventText {
     width: 70%;
 }
