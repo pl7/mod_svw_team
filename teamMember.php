@@ -1,4 +1,9 @@
 <?php 
+function displayAttachments($attachment) { ?>
+    
+    <span><a class="attachment" target="_blank" href="<?php echo $attachment->url; ?>"><?php echo $attachment->title.' ['.strtoupper($attachment->type).']'; ?></a><br/></span>
+<?php }
+
 function displaySVWEventDateBox($eventDate, $rowSpan) { ?>
 
 	<td class="svwDateTd" rowspan="<?php echo $rowSpan; ?>">
