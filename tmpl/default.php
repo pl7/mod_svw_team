@@ -84,7 +84,7 @@
     
                 ?>
                     <tr class="dateTr">
-						<?php displaySVWEventDateBox($eventDate, 3); ?>
+						<?php displaySVWEventDateBox($eventDate, 2); ?>
                         <td class="eventText">
 							<h5 itemprop="name"><?php echo $event->text ?></h5>
 							<span style="display:none" itemprop="description">SV Wiesbaden - <?php echo $teamInfo[0]->long_key ?>, Saison <?php echo $seasonKey ?></span>
@@ -301,34 +301,43 @@
                         <?php endif; ?>
                         <?php if(strlen($event->home)>0) : ?>
                         <div itemscope itemtype="http://schema.org/Organization" itemprop="attendee">
-                        <p>Gastgeber:&nbsp;
-                        <span itemprop="name">
-                        <?php echo $event->home; ?>
-                        </span>
-                        </p>
-							<?php if($canEdit) : ?>								
-								<?php $guest_teams = json_decode($event->guest); ?>
-								<?php if(json_last_error() === JSON_ERROR_NONE && is_object($guest_teams)) : ?>
-									<?php $team_count = $guest_teams->{'count'}; ?>
-									<?php if($team_count > 0) : ?>
-										<p><span>Gastmannschaften:</span></p>
-											<?php for($i=0;$i<$team_count;$i++) { 
-												echo "<p>";
-												echo "<b>".$guest_teams->{$i}->{'name'}.":</b>&nbsp;";
-												$teamCount = $guest_teams->{'teamCount'};
-												for ($j=1;$j<=$teamCount;$j++) {
-													if(strpos($guest_teams->{$i}->{'team'.$j}, "SV Wiesbaden") !== false) echo'<em>';
-													echo $guest_teams->{$i}->{'team'.$j};
-													if(strpos($guest_teams->{$i}->{'team'.$j}, "SV Wiesbaden") !== false) echo'</em>';
-													if($j<$teamCount) echo ', ';
-												}
-												echo "</p>";
-											} ?>
-									<?php endif; ?>
-								<?php endif; ?>
-							<?php endif; ?>
+                            <p>Gastgeber:&nbsp;
+                            <span itemprop="name">
+                            <?php echo $event->home; ?>
+                            </span>
+                            </p>
+    							<?php if($canEdit) : ?>								
+    								<?php $guest_teams = json_decode($event->guest); ?>
+    								<?php if(json_last_error() === JSON_ERROR_NONE && is_object($guest_teams)) : ?>
+    									<?php $team_count = $guest_teams->{'count'}; ?>
+    									<?php if($team_count > 0) : ?>
+    										<p><span>Gastmannschaften:</span></p>
+    											<?php for($i=0;$i<$team_count;$i++) { 
+    												echo "<p>";
+    												echo "<b>".$guest_teams->{$i}->{'name'}.":</b>&nbsp;";
+    												$teamCount = $guest_teams->{'teamCount'};
+    												for ($j=1;$j<=$teamCount;$j++) {
+    													if(strpos($guest_teams->{$i}->{'team'.$j}, "SV Wiesbaden") !== false) echo'<em>';
+    													echo $guest_teams->{$i}->{'team'.$j};
+    													if(strpos($guest_teams->{$i}->{'team'.$j}, "SV Wiesbaden") !== false) echo'</em>';
+    													if($j<$teamCount) echo ', ';
+    												}
+    												echo "</p>";
+    											} ?>
+    									<?php endif; ?>
+    								<?php endif; ?>
+    							<?php endif; ?>
 						</div>	
-                        <?php endif; ?>                        
+                        <?php endif; ?>
+                        <?php if(strlen($event->attachment)>0) : ?>
+                            <?php $event_attachment = json_decode($event->attachment); ?>
+
+                            <?php if(json_last_error() === JSON_ERROR_NONE && is_object($event_attachment)) : ?>
+                                <?php foreach ($event_attachment->data as $attachment) {
+                                    displayAttachments($attachment);   
+                                } ?>    
+    					    <?php endif; ?>			
+                        <?php endif; ?>
                     </td>
 				    <?php displayTimeValueTds($event, $begin, $end, $meeting); ?>    
                 </tr>
