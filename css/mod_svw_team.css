@@ -20,8 +20,10 @@
 }
 div.team-image-preview  {
     text-align:center;
-    width: 100%;
     cursor: pointer;
+    width: 100%;    
+}
+	cursor: pointer;
 }
 div.team-image-preview img.fullsize {
     position: fixed;
@@ -32,6 +34,8 @@ div.team-image-preview img.fullsize {
     padding: 100px;
     background: rgba(0,40,100, 0.8);
 }
+p.team-pic-caption { 
+	text-align:center;
 }
 .eventText {
     width: 70%;
