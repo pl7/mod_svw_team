@@ -20,9 +20,9 @@
 }
 div.team-image-preview  {
     text-align:center;
+    cursor: pointer;
     width: 100%;    
 }
-div.team-image-preview img {
 	cursor: pointer;
 }
 div.team-image-preview img.fullsize {
