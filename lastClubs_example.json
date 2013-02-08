@@ -40,3 +40,14 @@
 		]
 }
 {2000:SG Blau-Weiß Beelitz;2007:ESV Lok Sedding;2009:SpVgg Fortuna Edingen;2011}
+
+{
+    "data": [
+        {
+            "title": "Turnierplan",
+            "type": "pdf",
+            "url": "https://www.dropbox.com/s/ps0sxuoblen1ny0/2013-02-23-HT-Kastel-U7.pdf"
+        }
+    ],
+"name":"Anhänge"
+}
