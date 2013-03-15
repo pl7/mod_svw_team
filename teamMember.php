@@ -42,7 +42,7 @@ function displaySVWEventDescription($event) {
 
 function displaySVWEventLocation($event) { ?>
 	<?php if(strlen($event->meeting_place) > 2) : ?>
-	<div class="location" itemprop="location" itemscope itemtype="http://schema.org/Place">
+	<div itemprop="location" itemscope itemtype="http://schema.org/Place">
 		<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 			<p>
 				<img class="location" src="<?php echo JURI::base(); ?>media/mod_svw_team/images/location.png" alt="Location Symbol">
@@ -101,7 +101,7 @@ function displaySVWMember($member, $imgPath, $seasonKey, $teamKey) { ?>
 <?php 
 
 function displayBackToTopLink() { ?>
-    <nav class="back-to-top"><ul class="menu"><li><a href="#team_HEADER"><?php echo JText::_('MOD_SVW_TEAM_BACK_TO_TOP'); ?></a></li></ul></nav>
+    <nav class="back-to-top noPrint"><ul class="menu"><li><a href="#team_HEADER"><?php echo JText::_('MOD_SVW_TEAM_BACK_TO_TOP'); ?></a></li></ul></nav>
 <? }
 
 function displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, $teamorder) { ?>
@@ -109,6 +109,7 @@ function displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, $teamo
     <a href="#?memberView=<?php echo $member->id; ?>" class="spieler" title="Steckbrief von <?php echo $member->vorname." ".$member->name; ?>">
     <?php 
     $filePath = $imgPath.$seasonKey."/team/".$teamKey."_".strtolower($member->name)."_".strtolower($member->vorname)."_tb.png";
+	$filePathJpg = $imgPath.$seasonKey."/team/".$teamKey."_".strtolower($member->name)."_".strtolower($member->vorname)."_tb.jpg";
     echo '<!--'.$filePath.'-->';
     $last_clubs = null;
     if(json_decode($member->last_clubs) != null){
@@ -117,7 +118,9 @@ function displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, $teamo
     
     if( JFile::exists(JPATH_ROOT.$filePath) ) : ?>
         <img src="<?php echo $filePath;?>" alt="" width="43" height="58" class="klein">
-    <?php endif; ?>
+    <?php elseif (JFile::exists(JPATH_ROOT.$filePathJpg) ) : ?>
+		<img src="<?php echo $filePathJpg;?>" alt="" width="43" height="58" class="klein">
+	<?php endif; ?>  
     <?php 
     $filePath = $imgPath.$seasonKey."/team/gross/".$teamKey."_".urldecode(strtolower($member->name))."_".urldecode(strtolower($member->vorname)).".jpg";
     echo '<!--'.$filePath.'-->';

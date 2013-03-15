@@ -44,7 +44,6 @@ $showCups = $appParams->get('show_cups');
 $showLeagueGames = $appParams->get('show_league_games');
 
 
-
 //get the items to display from the helper
 $memberItems = ModSvwTeamHelper::getTeamMembersFromDb($teamKey, $seasonKey);
 $teamInfo = ModSvwTeamHelper::getTeamInfoFromDb($teamKey);
@@ -60,6 +59,9 @@ if($showMembers == 1){
 	$memberDefenseItems = ModSvwTeamHelper::getTeamMembersByPositionAndSeason($teamKey, $seasonKey, 2);
 	$memberMidfieldItems = ModSvwTeamHelper::getTeamMembersByPositionAndSeason($teamKey, $seasonKey, 3);
 	$memberForwardItems = ModSvwTeamHelper::getTeamMembersByPositionAndSeason($teamKey, $seasonKey, 4);
+	if($teamType == 1){
+		$memberJuniorItems = ModSvwTeamHelper::getTeamMembersByPositionAndSeason($teamKey, $seasonKey, 6);
+	}
 }
 if($showTrainEvents == 1){
 	$teamTrainData = ModSvwTeamHelper::getTeamEventsBySeasonAndType($teamKey, $seasonKey, 0, 0);
