@@ -50,7 +50,7 @@
             *****************  */ ?>
         <?php if($showTrainEvents && sizeof($teamTrainData) > 0) : ?>
         <article class="eventTimeTable ac">
-            <header><h4><img src="<?php echo $tpath; ?>/images/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_TRAIN_H3'); ?></h4></header>
+            <header><h4><img src="<?php echo $tpath; ?>/images/icons/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_TRAIN_H3'); ?></h4></header>
             <table id="trainDates">
                 <?php foreach ($teamTrainData as $event){ 
                     $trainDate = new JDate($event->date_start);
@@ -72,7 +72,7 @@
         <?php if($showEvents && sizeof($teamEventsData) > 0) : ?>
         <article class="eventTimeTable ac"  id="events">
             <header>
-                <h4><img src="<?php echo $tpath; ?>/images/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_EVENTS_H3'); ?> (<?php echo sizeof($teamEventsData);?>)</h4>
+                <h4><img src="<?php echo $tpath; ?>/images/icons/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_EVENTS_H3'); ?> (<?php echo sizeof($teamEventsData);?>)</h4>
 				<time style="display:none" datetime="<?php echo $eventDate;?>"><?php echo JHtml::_('date', $eventDate, JText::_('DATE_FORMAT_LC1')); ?></time>
             </header>
             <table>
@@ -105,7 +105,7 @@
         <?php if($showFriendlies && sizeof($teamFriendliesData) > 0) : ?>
         <article class="eventTimeTable ac" id="friendlies">
             <header>
-                <h4><img src="<?php echo $tpath; ?>/images/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_FRIENDLIES_H3'); ?> (<?php echo sizeof($teamFriendliesData);?>)</h4>
+                <h4><img src="<?php echo $tpath; ?>/images/icons/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_FRIENDLIES_H3'); ?> (<?php echo sizeof($teamFriendliesData);?>)</h4>
             </header>
             <?php foreach ($teamFriendliesData as $event){ 
                 $eventDateTime = new JDate($event->date_start.$event->time_begin);
@@ -143,7 +143,7 @@
                         <?php if($event->meeting_place != 0) : ?>
                          <div itemprop="location" itemscope itemtype="http://schema.org/Place">
                             <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                <p><img class="location" src="<?php echo $tpath; ?>/images/location_2.png" alt="Fussballpokal">Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
+                                <p><img class="location" src="<?php echo $tpath; ?>/images/icons/location.png" alt="Fussballpokal">Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -159,7 +159,7 @@
         <?php if($showLeagueGames && sizeof($teamLeagueGamesData) > 0) : ?>
         <article class="eventTimeTable ac" id="friendlies">
             <header class="noPrint">
-                <h4><img src="<?php echo $tpath; ?>/images/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_LEAGUE_H3'); ?> (<?php echo sizeof($teamLeagueGamesData);?>)</h4>
+                <h4><img src="<?php echo $tpath; ?>/images/icons/ball_football_clock.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_LEAGUE_H3'); ?> (<?php echo sizeof($teamLeagueGamesData);?>)</h4>
             </header>
             <?php foreach ($teamLeagueGamesData as $event){ 
                 $eventDateTime = new JDate($event->date_start.$event->time_begin);
@@ -203,7 +203,7 @@
         <?php if($showCups && sizeof($teamCupsData) > 0) : ?>
         <article class="eventTimeTable ac" id="friendlies">
             <header>
-                <h4><img src="<?php echo $tpath; ?>/images/trophy.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_CUPS_H3'); ?> (<?php echo sizeof($teamCupsData);?>)</h4>
+                <h4><img src="<?php echo $tpath; ?>/images/icons/trophy.png" alt="Fussball und Uhr"><?php echo JText::_('MOD_SVW_CUPS_H3'); ?> (<?php echo sizeof($teamCupsData);?>)</h4>
             </header>
             <?php foreach ($teamCupsData as $event){ 
                 $eventDateTime = new JDate($event->date_start.$event->time_begin);
@@ -241,7 +241,7 @@
                         <?php if($event->meeting_place != 0) : ?>
                          <div itemprop="location" itemscope itemtype="http://schema.org/Place">
                             <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                <p><img class="location" src="<?php echo $tpath; ?>/images/location_2.png" alt="Fussballpokal">Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
+                                <p><img class="location" src="<?php echo $tpath; ?>/images/icons/location.png" alt="Fussballpokal">Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -257,7 +257,7 @@
         <?php if($showTurnaments && sizeof($teamTurnamentsData) > 0) : ?>
         <article class="ac eventTimeTable" id="turnaments">
             <header>
-                <h4><img src="<?php echo $tpath; ?>/images/trophy.png" alt="Fussballpokal"><?php echo JText::_('MOD_SVW_TURNAMENTS_H3'); ?> (<?php echo sizeof($teamTurnamentsData);?>)</h4>
+                <h4><img src="<?php echo $tpath; ?>/images/icons/trophy.png" alt="Fussballpokal"><?php echo JText::_('MOD_SVW_TURNAMENTS_H3'); ?> (<?php echo sizeof($teamTurnamentsData);?>)</h4>
             </header>
             <?php foreach ($teamTurnamentsData as $event){ 
                 $eventDateTime = new JDate($event->date_start.$event->time_begin);
@@ -282,7 +282,7 @@
                         <?php if(strlen($event->meeting_place) > 1) : ?>
                         <div itemprop="location" itemscope itemtype="http://schema.org/Place">
                         <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                            <p><img class="location" src="<?php echo $tpath; ?>/images/location_2.png" alt="Fussballpokal"><Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
+                            <p><img class="location" src="<?php echo $tpath; ?>/images/icons/location.png" alt="Fussballpokal"><Veranstaltungsort: <span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span></p>
                         </div>
                         </div>
                         <?php endif; ?>
@@ -386,7 +386,7 @@
 					</h3>
 				</header>
 				<?php foreach ($memberCoachesItems as $member){ ?>
-				<?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_COACH_TITLE')); ?>
+				<?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_COACH_TITLE'), $tpath, $teamType); ?>
 				<?php } ?>
 			</article>
 		</section>
@@ -406,7 +406,7 @@
 					<h3><?php echo JText::_('MOD_SVW_TEAM_KEEPER_TITLE'); ?></h3>
 				</header>
 				<?php foreach ($memberKeeperItems as $member){ ?>
-				<?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_COACH_TITLE')); ?>
+				<?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_COACH_TITLE'), $tpath, $teamType); ?>
 				<?php } ?>
 			</article>
 		</section>
@@ -421,7 +421,7 @@
 						<h3 class="teamorder"><?php echo JText::_('MOD_SVW_TEAM_JUNIOR_TITLE'); ?></h3>
 					</header>
 					<?php foreach ($memberJuniorItems as $member){ ?>
-					<?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_JUNIOR_TITLE')); ?>
+					<?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_JUNIOR_TITLE'), $tpath, $teamType); ?>
 					<?php } displayBackToTopLink(); ?>
 				</article>
             </section>
@@ -435,7 +435,7 @@
                     <h3 class="teamorder"><?php echo JText::_('MOD_SVW_TEAM_GK_TITLE'); ?></h3>
                 </header>
                 <?php foreach ($memberGKItems as $member){ ?>
-                <?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_GK_TITLE')); ?>
+                <?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_GK_TITLE'), $tpath, $teamType); ?>
                 <?php } displayBackToTopLink(); ?>
             </article>
             </section>
@@ -448,7 +448,7 @@
                     <h3 class="teamorder"><?php echo JText::_('MOD_SVW_TEAM_DF_TITLE'); ?></h3>
                 </header>
                 <?php foreach ($memberDefenseItems as $member){ ?>
-                <?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_DF_TITLE')); ?>
+                <?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_DF_TITLE'), $tpath, $teamType); ?>
                 <?php }  displayBackToTopLink(); ?>
             </article>
             </section>
@@ -461,7 +461,7 @@
                     <h3 class="teamorder"><?php echo JText::_('MOD_SVW_TEAM_MF_TITLE'); ?></h3>
                 </header>
                 <?php foreach ($memberMidfieldItems as $member){ ?>
-                <?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_MF_TITLE')); ?>
+                <?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_MF_TITLE'), $tpath, $teamType); ?>
                 <?php } displayBackToTopLink(); ?>
             </article>
             </section>
@@ -474,7 +474,7 @@
                     <h3 class="teamorder"><?php echo JText::_('MOD_SVW_TEAM_FW_TITLE'); ?></h3>
                 </header>
                 <?php foreach ($memberForwardItems as $member){ ?>
-                <?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_FW_TITLE')); ?>
+                <?php displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, JText::_('MOD_SVW_TEAM_FW_TITLE'), $tpath, $teamType); ?>
                 <?php } displayBackToTopLink(); ?>
             </article>
             </section>

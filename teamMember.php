@@ -45,7 +45,7 @@ function displaySVWEventLocation($event) { ?>
 	<div itemprop="location" itemscope itemtype="http://schema.org/Place">
 		<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 			<p>
-				<img class="location" src="<?php echo JURI::base(); ?>media/mod_svw_team/images/location.png" alt="Location Symbol">
+				<img class="location" src="<?php echo JURI::base(); ?>media/mod_svw_team/images/icons/location.png" alt="Location Symbol">
 				<span itemprop="addressLocality"><?php echo $event->meeting_place; ?></span>
 			</p>
 		</div>
@@ -104,43 +104,83 @@ function displayBackToTopLink() { ?>
     <nav class="back-to-top noPrint"><ul class="menu"><li><a href="#team_HEADER"><?php echo JText::_('MOD_SVW_TEAM_BACK_TO_TOP'); ?></a></li></ul></nav>
 <? }
 
-function displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, $teamorder) { ?>
-    
-    <a href="#?memberView=<?php echo $member->id; ?>" class="spieler" title="Steckbrief von <?php echo $member->vorname." ".$member->name; ?>">
-    <?php 
-    $filePath = $imgPath.$seasonKey."/team/".$teamKey."_".strtolower($member->name)."_".strtolower($member->vorname)."_tb.png";
-	$filePathJpg = $imgPath.$seasonKey."/team/".$teamKey."_".strtolower($member->name)."_".strtolower($member->vorname)."_tb.jpg";
-    echo '<!--'.$filePath.'-->';
-    $last_clubs = null;
-    if(json_decode($member->last_clubs) != null){
-        $last_clubs = json_decode($member->last_clubs);
-    }
-    
-    if( JFile::exists(JPATH_ROOT.$filePath) ) : ?>
-        <img src="<?php echo $filePath;?>" alt="" width="43" height="58" class="klein">
-    <?php elseif (JFile::exists(JPATH_ROOT.$filePathJpg) ) : ?>
-		<img src="<?php echo $filePathJpg;?>" alt="" width="43" height="58" class="klein">
-	<?php endif; ?>  
-    <?php 
-    $filePath = $imgPath.$seasonKey."/team/gross/".$teamKey."_".urldecode(strtolower($member->name))."_".urldecode(strtolower($member->vorname)).".jpg";
-    echo '<!--'.$filePath.'-->';
-    $last_clubs = null;
-    if(json_decode($member->last_clubs) != null){
-        $last_clubs = json_decode($member->last_clubs);
-    }
-    
-    if( JFile::exists(JPATH_ROOT.$filePath) ) : ?>
-        <img src="<?php echo $filePath;?>" alt="" width="226" height="58" class="gross">
-    <?php endif; ?>    
-      
-      <span class="spielername players-overview"><?php echo $member->vorname." ".$member->name; ?></span>
-
-  		<span class="spielerinfo players-overview">
-  			<span class="nummer"><?php if($member->jersey_nr != 0) {echo $member->jersey_nr; } else {echo'&nbsp;';}?></span>
-  			<span class="position"><?php echo $member->title != null ? $member->title : $teamorder; ?></span>
-  			<span class="alter"><?php if($member->bday != '0000-00-00') {echo JHtml::_('date', $member->bday, JText::_('DATE_FORMAT_LC4')); }?></span>
-  		</span>
-    </a>
+function displaySVWMemberPreview($member, $imgPath, $seasonKey, $teamKey, $teamorder, $tpath, $teamType) { ?>
+        
+    <div class="spieler hide-info" title="Steckbrief von <?php echo $member->vorname." ".$member->name; ?>" id="teamMemberContact<?php echo $member->id; ?>">
+        <div class="overview">
+            <?php 
+            $filePath = $imgPath.$seasonKey."/team/".$teamKey."_".strtolower($member->name)."_".strtolower($member->vorname)."_tb.png";
+        	$filePathJpg = $imgPath.$seasonKey."/team/".$teamKey."_".strtolower($member->name)."_".strtolower($member->vorname)."_tb.jpg";
+            echo '<!--'.$filePath.'-->';
+            $last_clubs = null;
+            if(json_decode($member->last_clubs) != null){
+                $last_clubs = json_decode($member->last_clubs);
+            }
+            
+            if( JFile::exists(JPATH_ROOT.$filePath) ) : ?>
+                <img src="<?php echo $filePath;?>" alt="" width="43" height="58" class="klein">
+            <?php elseif (JFile::exists(JPATH_ROOT.$filePathJpg) ) : ?>
+        		<img src="<?php echo $filePathJpg;?>" alt="" width="43" height="58" class="klein">
+        	<?php endif; ?>  
+            <?php 
+            $filePath = $imgPath.$seasonKey."/team/gross/".$teamKey."_".urldecode(strtolower($member->name))."_".urldecode(strtolower($member->vorname)).".jpg";
+            echo '<!--'.$filePath.'-->';
+            $last_clubs = null;
+            if(json_decode($member->last_clubs) != null){
+                $last_clubs = json_decode($member->last_clubs);
+            }
+            
+            if( JFile::exists(JPATH_ROOT.$filePath) ) : ?>
+                <img src="<?php echo $filePath;?>" alt="" width="226" height="58" class="gross">
+            <?php endif; ?>    
+          
+            <span class="spielername players-overview"><?php echo $member->vorname." ".$member->name; ?></span>
+      		<span class="spielerinfo players-overview">
+      			<span class="nummer"><?php if($member->jersey_nr != 0) {echo $member->jersey_nr; } else {echo'&nbsp;';}?></span>
+      			<span class="position"><?php echo $member->title != null ? $member->title : $teamorder; ?></span>
+      			<span class="alter"><?php if($member->bday != '0000-00-00') {echo JHtml::_('date', $member->bday, JText::_('DATE_FORMAT_LC4')); }?></span>
+      		</span>
+            <div class="noFloat"></div>
+  		</div>
+  		<div class="contact" onclick="toogleContactInfo('teamMemberContact<?php echo $member->id; ?>');" onmouseover="flashContactInfo('teamMemberContact<?php echo $member->id; ?>');">
+  		    <?php $oneMobileDisplayed = false; ?>
+            <?php if(!empty($member->tel_1) && $member->tel_1_label != 'Tel.' && !$oneMobileDisplayed) : ?>
+                <p class="mobile"><img src="<?php echo $tpath; ?>/images/icons/phone.png" />
+                <span  itemprop="telephone"><?php echo $member->tel_1; ?></span></p>
+            <?php 
+                $oneMobileDisplayed = true;
+                endif;
+            ?>
+            <?php if(!empty($member->tel_2) && $member->tel_2_label != 'Tel.' && !$oneMobileDisplayed) : ?>
+                <p class="mobile"><img src="<?php echo $tpath; ?>/images/icons/phone.png" />
+                <span  itemprop="telephone"><?php echo $member->tel_2; ?></span></p>
+            <?php 
+                $oneMobileDisplayed = true;
+                endif;
+            ?>
+            <?php if(!empty($member->tel_3) && $member->tel_3_label != 'Tel.' && !$oneMobileDisplayed) : ?>
+                <p class="mobile"><img src="<?php echo $tpath; ?>/images/icons/phone.png" />
+                <span  itemprop="telephone"><?php echo $member->tel_3; ?></span></p>
+            <?php 
+                $oneMobileDisplayed = true;
+                endif;
+            ?>
+            <?php if($member->title != null) : ?>
+                <?php 
+                    $form_url = $teamType ? '/jugend/mannschaften/' : ''; 
+                    $form_url.= $teamKey;
+                    $form_url.= $teamType ? '/spieler-und-betreuer/' : '/kader/';
+                    $form_url.= str_replace(' ', '',$member->title);
+                ?>
+                <p  class="formular">
+                    <img src="<?php echo $tpath; ?>/images/icons/mail.png" /> <a href="<?php echo $form_url;?>">Kontaktformular</a>
+                </p>
+            <?php endif; ?>
+            <div class="opener">
+                <img src="<?php echo $tpath; ?>/images/opener.png" />
+            </div>
+        </div>
+    </div>
     
 <? }
 

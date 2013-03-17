@@ -21,3 +21,36 @@ function toggleFullSizeImage(myImage, teamKey) {
         teamImageCaption.className = "fullsize"; 
     }
 }
+
+/**
+ Toggles contact info on contact page
+ 
+ default switch between formular and contact details
+*/
+function toogleContactInfo(teamMemberId) {
+
+    var teamMemberDO = $("#"+teamMemberId);
+    
+    if(teamMemberDO.hasClass('hide-info'))
+    {
+        teamMemberDO.removeClass('hide-info');
+        teamMemberDO.addClass('show-info');
+    }
+    else
+    {
+        teamMemberDO.removeClass('show-info');
+        teamMemberDO.addClass('hide-info');
+    }
+}
+
+/**
+ Flahes contact info in profile preview on team sites
+*/
+function flashContactInfo(teamMemberId) {
+
+    var teamMemberDO = $("#"+teamMemberId);
+    
+    teamMemberDO.removeClass('flash-info');
+    teamMemberDO.addClass('flash-info');
+
+}

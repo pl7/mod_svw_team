@@ -15,6 +15,7 @@ jimport('joomla.application.component.helper');
 $doc =& JFactory::getDocument();   
 $doc->addScript("/media/mod_svw_team/js/teamSite.js");
 $doc->addStylesheet("/media/mod_svw_team/css/mod_svw_team.css");
+$doc->addStylesheet("/media/mod_svw_team/css/mod_svw_team_player.css");
 
 $app = JFactory::getApplication(); 
 $appParams  = $app->getParams();

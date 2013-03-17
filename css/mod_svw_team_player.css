@@ -1,0 +1,397 @@
+
+/**
+* Spielerlink
+*/
+.ac .teamorder {
+    color: rgb(255,74,0);
+}
+div.spieler {
+  /* background:       #878686; */
+
+  text-decoration: none;
+  padding: 1px;
+  display: block;
+  cursor: pointer;
+  margin: 1em 2em;
+  border: none !important;
+  /* height: 131px; */
+  width: 275px;
+  float: left;
+}
+div.spieler.gross {
+  /*  margin:           0 0 10px 1px;*/
+
+  height: 72px;
+  width: 354px;
+  float: left;
+}
+div.spieler.gross.bootstrap {
+  /*  margin:           0 0 10px 1px;*/
+
+  height: auto;
+  width: auto;
+  float: none;
+}
+.spieler img,
+.spieler.bootstrap .stats img {
+  float: left;
+  margin: 0 0 1px 0;
+  display: block;
+  border: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  border-radius: none;
+  border-radius: none;
+  -moz-border-radius: none;
+  -webkit-border-radius: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+.spieler.bootstrap .stats img {
+  width: 28px;
+}
+.spieler.bootstrap img {
+  border: 1px solid #999999;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  border-radius: 1px;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  margin-bottom: 10px;
+  padding: 1px;
+}
+.spieler img.klein {
+  margin-right: 1px;
+}
+.spielername {
+  background: transparent url(http://svwiesbaden1899.de/images/bg/steckbrief_bottom_01.jpg) left top repeat-x;
+  font-weight: bold;
+  padding: 4px 0 0 6px;
+  display: block;
+  margin: 0 0 1px 0;
+  height: 21px;
+      width: 270px;
+  color: #ffffff;
+  float: left;
+}
+.spielerinfo {
+  background: transparent url(http://svwiesbaden1899.de/images/bg/steckbrief_bottom_02.jpg) left top no-repeat;
+  display: block;
+  height: 47px;
+  width: 270px;
+  float: left;
+}
+.spielerinfo .funktion {
+  background-position: 210px 3px;
+  background-repeat: no-repeat;
+  display: block;
+  height: 47px;
+  float: left;
+}
+.spielerinfo .funktion.sturm {
+  background-image: url(/images/v2007/icons/sturm.gif);
+}
+.spielerinfo .funktion.mittelfeld {
+  background-image: url(/images/v2007/icons/mittelfeld.gif);
+}
+.spielerinfo .funktion.abwehr {
+  background-image: url(/images/v2007/icons/abwehr.gif);
+}
+.nummer {
+  font-weight: bold;
+  text-align: center;
+  font-size: 200%;
+  padding: 12px 0 0 0;
+  display: block;
+  margin: 0 15px 0 0;
+  height: 34px;
+  width: 100px;
+  float: left;
+  color: #ffffff;
+}
+.position {
+  font-weight: bold;
+  padding: 4px 0 0 0;
+  display: block;
+  margin: 0 0 0 0;
+  width: 135px;
+  float: left;
+  color: white;
+}
+.alter {
+  font-weight: bold;
+  padding: 0 0 0 0;
+  display: block;
+  margin: 0 0 0 0;
+  width: 135px;
+  float: left;
+  color: rgb(0, 0, 74);
+}
+.spieler.gross .position,
+.spieler.gross .alter {
+  width: 170px;
+}
+.spieler.gross table {
+  width: 360px;
+  clear: left;
+}
+table.table.player-spec {
+  margin-top: 10px;
+  width: 360px;
+}
+.spielerbild {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+.optic01 th {
+  background: #b70700;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #b70700 0%, #a20500 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b70700), color-stop(100%, #a20500));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #b70700 0%, #a20500 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #b70700 0%, #a20500 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #b70700 0%, #a20500 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #b70700 0%, #a20500 100%);
+  /* W3C */
+
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#b70700', endColorstr='#a20500', GradientType=0);
+  /* IE6-9 */
+
+  color: white;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.optic01 tr td:nth-child(2) {
+  text-align: center;
+}
+.description p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.description p strong {
+  font-style: normal;
+}
+.stats .center {
+  text-align: center;
+}
+/* Neue Spieler-Steckbriefe */
+.player-action {
+  height: 335px;
+  margin-top: 10px;
+  position: relative;
+  width: 700px;
+}
+img.player-action-picture {
+  border: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  height: 335px;
+  margin: -25px -30px 0 -30px;
+  padding: 0;
+  width: 700px;
+}
+h1.player-action-name {
+  bottom: 0;
+  color: white;
+  display: block;
+  font-size: 30px;
+  left: 0;
+  background: #070707 url('/images/v2012/misc/headline-gradient-fallback.jpg') center top repeat-x;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #444444 0%, #303030 2%, #070707 98%, #000000 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #444444), color-stop(2%, #303030), color-stop(98%, #070707), color-stop(100%, #000000));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #444444 0%, #303030 2%, #070707 98%, #000000 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #444444 0%, #303030 2%, #070707 98%, #000000 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #444444 0%, #303030 2%, #070707 98%, #000000 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #444444 0%, #303030 2%, #070707 98%, #000000 100%);
+  /* W3C */
+
+  margin: 0 -30px 0 -30px;
+  padding: 5px 0 5px 30px;
+  position: absolute;
+  text-shadow: 0 -1px 2px #000000;
+  width: 670px;
+}
+.player-profile-content {
+  margin-top: 20px;
+  margin-bottom: -15px;
+}
+.player-profile-picture img {
+  margin-top: 0;
+}
+.play-profile-general tr td img {
+  border: 0;
+  height: 16px;
+  margin: 0 5px 0 0;
+  padding: 0;
+  width: 16px;
+}
+#private {
+  -moz-column-count: 2;
+  -moz-column-gap: 60px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 60px;
+  column-count: 2;
+  column-gap: 60px;
+}
+.spielerinfo.profile {
+  width: 440px;
+}
+.spielerinfo.players-overview {
+  width: 270px;
+}
+.spielername.players-overview {
+  width: 270px;
+}
+.profile .funktion.torwart {
+  width: 100%;
+}
+.profile .position {
+  width: 300px;
+}
+.player-profile-details {
+  width: 440px;
+}
+.player-profile-details table {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.player-profile-details .table-bordered tbody:first-child tr:first-child td:first-child {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+}
+
+div.overview {
+    border: 1px solid #ccc;
+    position: relative;
+    z-index: 1;
+    background: white;
+}
+
+div.opener {    
+    margin: 0 auto;
+    width: 142px;
+    cursor: pointer;
+    top: 0.3em;
+}
+
+
+.spieler .contact {    
+    -webkit-transition: top 0.5s 0.2s ease-in-out;
+       -moz-transition: top 0.5s 0.2s ease-in-out;
+        -ms-transition: top 0.5s 0.2s ease-in-out;
+         -o-transition: top 0.5s 0.2s ease-in-out;
+		    transition: top 0.5s 0.2s ease-in-out;
+}
+.spieler .contact,
+.spieler.hide-info > .contact {
+    padding: 0.25em;
+
+    z-index: 0;
+
+    position: relative;
+    top: -4.8em;
+
+    border: 1px solid #CCC;
+    border-top: none;
+    
+    clear: both;
+            animation:toogleHint 1s 0.5s;
+       -moz-animation:toogleHint 1s 0.5s; /* Firefox */
+    -webkit-animation:toogleHint 1s 0.5s; /* Safari and Chrome */
+         -o-animation:toogleHint 1s 0.5s; /* Opera */
+
+}
+.spieler > .contact:hover,
+.spieler.show-info > div.contact {
+
+
+}
+.spieler.show-info > div.contact {
+    top: 0px;
+}
+div.contact img {
+    margin-right: 0.25em;
+}
+
+div.opener { 
+    position: relative;
+}
+div.opener img {
+    float: left;
+    margin: 0 0 1px 0;
+    display: block;
+    border: none;
+    -webkit-border-radius: none;
+    -moz-border-radius: none;
+    border-radius: none;
+    border-radius: none;
+    -moz-border-radius: none;
+    -webkit-border-radius: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+}
+
+
+@-webkit-keyframes toogleHint /* Safari and Chrome */
+{
+50%  {top: -2.2em;}
+}
+
+
+@-o-keyframes toogleHint /* Opera */
+{
+50%  {top: -2.2em;}
+}
+
+@-moz-keyframes toogleHint /* Firefox */
+{
+50%  {top: -2.2em;}
+}
+
+@keyframes toogleHint
+{
+50%  {top: -2.2em;}
+}
